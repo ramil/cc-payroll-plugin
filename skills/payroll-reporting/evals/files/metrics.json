@@ -1,0 +1,183 @@
+{
+  "totals": {
+    "total_gross_pay": 370541.68,
+    "total_deductions": 119265.82999999996,
+    "total_employer_contributions": 57271.93999999998,
+    "total_employer_cost": 427813.62,
+    "record_count": 509
+  },
+  "headcount": {
+    "active_headcount": 50,
+    "unique_employees": {
+      "EMP00001": "Betty Hernandez",
+      "EMP00002": "Lisa Miller",
+      "EMP00003": "Patricia Jackson",
+      "EMP00004": "Patricia Martinez",
+      "EMP00005": "Barbara Harris",
+      "EMP00006": "Jessica Wilson",
+      "EMP00007": "Michael Gonzalez",
+      "EMP00008": "Barbara Anderson",
+      "EMP00009": "Richard Martinez",
+      "EMP00010": "Barbara Thomas",
+      "EMP00011": "Donald Moore",
+      "EMP00012": "Daniel Moore",
+      "EMP00013": "Sarah Clark",
+      "EMP00014": "Richard Sanchez",
+      "EMP00015": "Patricia Brown",
+      "EMP00016": "Mary Wilson",
+      "EMP00017": "James Rodriguez",
+      "EMP00018": "Susan Thomas",
+      "EMP00019": "Betty Martinez",
+      "EMP00020": "Richard Lopez",
+      "EMP00021": "Mary Martin",
+      "EMP00022": "David Martinez",
+      "EMP00023": "Mary Martinez",
+      "EMP00024": "Linda Davis",
+      "EMP00025": "Patricia Johnson",
+      "EMP00026": "Patricia Wilson",
+      "EMP00027": "Susan Johnson",
+      "EMP00028": "Karen Garcia",
+      "EMP00029": "Patricia Lee",
+      "EMP00030": "Susan Ramirez",
+      "EMP00031": "Linda Hernandez",
+      "EMP00032": "Susan Sanchez",
+      "EMP00033": "William Smith",
+      "EMP00034": "James Smith",
+      "EMP00035": "Matthew Moore",
+      "EMP00036": "Barbara Lopez",
+      "EMP00037": "Sarah Ramirez",
+      "EMP00038": "Charles Martinez",
+      "EMP00039": "Linda Williams",
+      "EMP00040": "James Hernandez",
+      "EMP00041": "Patricia Gonzalez",
+      "EMP00042": "Michael Gonzalez",
+      "EMP00043": "Thomas Smith",
+      "EMP00044": "Christopher Gonzalez",
+      "EMP00045": "Christopher Hernandez",
+      "EMP00046": "Linda Moore",
+      "EMP00047": "Betty Williams",
+      "EMP00048": "Emma Johnson",
+      "EMP00049": "Joseph Jones",
+      "EMP00050": "William Harris"
+    },
+    "new_hires": [],
+    "terminations": []
+  },
+  "by_cost_center": {
+    "4100": {
+      "headcount": 6,
+      "gross_pay": 58869.9,
+      "deductions": 16418.27,
+      "employer_contributions": 7398.37,
+      "total_cost": 66268.27
+    },
+    "4101": {
+      "headcount": 7,
+      "gross_pay": 57816.09,
+      "deductions": 19120.63,
+      "employer_contributions": 8622.94,
+      "total_cost": 66439.03
+    },
+    "4102": {
+      "headcount": 2,
+      "gross_pay": 12263.84,
+      "deductions": 3654.7000000000003,
+      "employer_contributions": 2012.35,
+      "total_cost": 14276.19
+    },
+    "4200": {
+      "headcount": 2,
+      "gross_pay": 13791.58,
+      "deductions": 4627.11,
+      "employer_contributions": 2255.05,
+      "total_cost": 16046.630000000001
+    },
+    "4300": {
+      "headcount": 8,
+      "gross_pay": 54740.939999999995,
+      "deductions": 17632.67,
+      "employer_contributions": 8801.64,
+      "total_cost": 63542.579999999994
+    },
+    "4301": {
+      "headcount": 6,
+      "gross_pay": 43100.16,
+      "deductions": 14179.94,
+      "employer_contributions": 6839.71,
+      "total_cost": 49939.87
+    },
+    "4400": {
+      "headcount": 8,
+      "gross_pay": 52214.83,
+      "deductions": 17603.850000000002,
+      "employer_contributions": 8794.44,
+      "total_cost": 61009.270000000004
+    },
+    "4500": {
+      "headcount": 11,
+      "gross_pay": 77744.34,
+      "deductions": 26028.660000000003,
+      "employer_contributions": 12547.44,
+      "total_cost": 90291.78
+    }
+  },
+  "by_department": {
+    "100": {
+      "headcount": 19,
+      "gross_pay": 145233.41999999998,
+      "deductions": 46971.25999999999,
+      "employer_contributions": 22175.199999999997,
+      "total_cost": 167408.62
+    },
+    "200": {
+      "headcount": 16,
+      "gross_pay": 96545.44,
+      "deductions": 31558.509999999995,
+      "employer_contributions": 16678.090000000004,
+      "total_cost": 113223.53
+    },
+    "300": {
+      "headcount": 15,
+      "gross_pay": 128762.81999999999,
+      "deductions": 40736.05999999998,
+      "employer_contributions": 18418.649999999998,
+      "total_cost": 147181.47
+    }
+  },
+  "by_wage_type": {
+    "1000:Basic Pay": 356495.33,
+    "1100:Overtime": 3183.35,
+    "1200:Bonus": 10863.0,
+    "2001:Federal Tax": 53474.27,
+    "2002:State Tax": 14259.81,
+    "2003:FICA-OASDI": 22102.74,
+    "2004:FICA-Medicare": 5169.2,
+    "2100:Health Insurance": 10000.0,
+    "2200:401k": 14259.81,
+    "3001:ER FICA-OASDI": 22102.74,
+    "3002:ER FICA-Medicare": 5169.2,
+    "3100:ER Health Insurance": 30000.0
+  },
+  "by_category": {
+    "earnings": 370541.68,
+    "deductions": 119265.83,
+    "employer_contributions": 57271.94
+  },
+  "averages": {
+    "avg_gross_pay_per_employee": 7410.83,
+    "avg_total_cost_per_employee": 8556.27,
+    "avg_deductions_per_employee": 2385.32
+  },
+  "taxes": {
+    "total_deductions": 119265.83,
+    "effective_deduction_rate": 32.19
+  },
+  "notable": {
+    "observations": [
+      "Overtime detected: $3,183.35 total overtime pay",
+      "Bonuses detected: $10,863.00 total bonus payments",
+      "Processing status: Completed: 509"
+    ],
+    "data_quality_notes": []
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "skill_name": "payroll-kb",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're getting a 'Missing Tax Data' alert for 3 employees in PCC monitoring. What does this mean and how do I fix it?",
+      "expected_output": "A clear explanation of the Missing Tax Data alert with step-by-step resolution instructions including SAP transaction codes",
+      "files": [],
+      "expectations": [
+        "The response explains that the alert relates to missing tax infotype 0210",
+        "The response includes specific SAP transaction codes (PA30 at minimum)",
+        "The response provides numbered resolution steps",
+        "The response mentions checking the employee's W-4 information",
+        "The response suggests prevention measures for the future"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "i have an employee in NJ who works remotely from their home but our office is in NYC. how does the tax withholding work? do we withhold for both states?",
+      "expected_output": "An explanation of NJ/NY tax reciprocity rules and multi-state withholding for remote workers",
+      "files": [],
+      "expectations": [
+        "The response addresses the specific NJ resident / NY work location scenario",
+        "The response mentions state tax reciprocity or lack thereof between NJ and NY",
+        "The response explains which state(s) to withhold for",
+        "The response references relevant SAP infotypes for tax setup (0208, 0209, 0210)",
+        "The response notes compliance considerations"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "An employee was terminated last Friday but we already ran payroll for this month. She's owed 40 hours of accrued PTO. How do I process this?",
+      "expected_output": "Step-by-step guidance for processing a post-payroll termination with PTO payout, including off-cycle processing instructions",
+      "files": [],
+      "expectations": [
+        "The response recommends off-cycle payroll processing",
+        "The response covers PTO payout steps",
+        "The response mentions state-specific final pay timing requirements",
+        "The response includes relevant SAP transaction codes or infotypes",
+        "The response addresses the termination date setup in SAP (IT0000, IT0001)"
+      ]
+    }
+  ]
+}

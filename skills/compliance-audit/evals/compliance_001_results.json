@@ -1,0 +1,318 @@
+{
+  "validation_date": "2026-02-07T19:21:46.891865Z",
+  "total_records": 52,
+  "risk_score": 71,
+  "risk_level": "Very High Risk",
+  "overall_status": "FAIL",
+  "pass_count": 10,
+  "warning_count": 0,
+  "fail_count": 17,
+  "validation_categories": [
+    {
+      "category": "Data Completeness",
+      "total_checks": 8,
+      "passed": 5,
+      "failed": 3,
+      "warnings": 0,
+      "checks": [
+        {
+          "check_name": "Missing Employee IDs",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employee records have missing IDs",
+          "recommendation": "Ensure all employees have valid SAP employee IDs from HR system"
+        },
+        {
+          "check_name": "Missing Employee Names",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 records have missing employee names",
+          "recommendation": "Verify employee master data in SAP (transaction PA30)"
+        },
+        {
+          "check_name": "Blank Gross Pay Amounts",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 records have blank or zero gross pay",
+          "recommendation": "Review payroll input data; all employees must have gross pay amount"
+        },
+        {
+          "check_name": "Missing Cost Center",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "2",
+          "details": "2 employees not assigned to cost center",
+          "recommendation": "Assign all employees to valid cost center in PA30 or PU03"
+        },
+        {
+          "check_name": "Missing Wage Type Code",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 records missing wage type (e.g., 1000, /101, /201)",
+          "recommendation": "Ensure wage type codes are properly configured per SAP wage type master"
+        },
+        {
+          "check_name": "Missing Department Code",
+          "status": "FAIL",
+          "severity": "Medium",
+          "affected_count": "3",
+          "details": "3 employees missing department assignment",
+          "recommendation": "Assign all employees to valid organizational unit (PA30)"
+        },
+        {
+          "check_name": "Missing Payroll Area",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employees not assigned payroll area",
+          "recommendation": "Configure payroll area assignment in PA30 (e.g., US, US-CA)"
+        },
+        {
+          "check_name": "Duplicate Employee Records",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "4",
+          "details": "4 duplicate employee records detected",
+          "recommendation": "Remove duplicate entries; ensure each employee appears once per period"
+        }
+      ]
+    },
+    {
+      "category": "Calculation Accuracy",
+      "total_checks": 6,
+      "passed": 0,
+      "failed": 6,
+      "warnings": 0,
+      "checks": [
+        {
+          "check_name": "Negative Gross Pay",
+          "status": "FAIL",
+          "severity": "Critical",
+          "affected_count": "1",
+          "details": "1 employees have negative gross pay amounts",
+          "recommendation": "Correct payroll entry; gross pay must be positive or zero (unpaid leave)"
+        },
+        {
+          "check_name": "Net Pay Exceeds Gross Pay",
+          "status": "FAIL",
+          "severity": "Critical",
+          "affected_count": "2",
+          "details": "2 records have net pay exceeding gross pay",
+          "recommendation": "Review deductions and withholding; net cannot exceed gross"
+        },
+        {
+          "check_name": "Federal Tax Exceeds Gross Pay",
+          "status": "FAIL",
+          "severity": "Critical",
+          "affected_count": "1",
+          "details": "1 employees have tax withholding exceeding gross pay",
+          "recommendation": "Review W-4 information and tax configuration; withholding cannot exceed gross"
+        },
+        {
+          "check_name": "Overtime Rate Validation (FLSA)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "52",
+          "details": "52 records have invalid overtime rates (should be 1.5x regular)",
+          "recommendation": "Ensure overtime calculated as 1.5x regular rate per FLSA requirements"
+        },
+        {
+          "check_name": "FICA Social Security Calculation (6.2%)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "4",
+          "details": "4 records have incorrect SS withholding (should be 6.2% of gross)",
+          "recommendation": "Verify Social Security withholding rate and wage base limits in tax configuration"
+        },
+        {
+          "check_name": "Garnishment Limit Compliance (\u226425%)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "1",
+          "details": "1 garnishments exceed 25% limit per Consumer Credit Protection Act",
+          "recommendation": "Review garnishment amounts; maximum 25% of disposable income per CCPA"
+        }
+      ]
+    },
+    {
+      "category": "Wage Base Limits",
+      "total_checks": 4,
+      "passed": 1,
+      "failed": 3,
+      "warnings": 0,
+      "checks": [
+        {
+          "check_name": "Social Security Wage Base Exceeded ($176,100)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "1",
+          "details": "1 employees have YTD earnings exceeding SS wage base of $176,100.00",
+          "recommendation": "Verify SS withholding stopped once annual wage base exceeded; review YTD calculations"
+        },
+        {
+          "check_name": "FUTA Wage Base Exceeded ($7,000)",
+          "status": "FAIL",
+          "severity": "Medium",
+          "affected_count": "25",
+          "details": "25 employees exceed FUTA wage base of $7,000.00",
+          "recommendation": "Verify FUTA contribution stopped once wage base exceeded (employer tax)"
+        },
+        {
+          "check_name": "Additional Medicare Threshold ($200,000)",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employees exceed Additional Medicare threshold of $200,000.00",
+          "recommendation": "Verify 0.9% Additional Medicare withholding applied above $200,000"
+        },
+        {
+          "check_name": "State SUI Wage Base Limits",
+          "status": "FAIL",
+          "severity": "Medium",
+          "affected_count": "25",
+          "details": "25 employees may exceed state SUI wage base (varies by state)",
+          "recommendation": "Verify state SUI withholding per state-specific wage base limits"
+        }
+      ]
+    },
+    {
+      "category": "Compliance Rules",
+      "total_checks": 5,
+      "passed": 2,
+      "failed": 3,
+      "warnings": 0,
+      "checks": [
+        {
+          "check_name": "Minimum Wage Compliance ($7.25 federal)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "1",
+          "details": "1 employees have pay below federal minimum wage",
+          "recommendation": "Verify hourly rates meet federal and state minimum wage requirements"
+        },
+        {
+          "check_name": "Garnishment Priority Ordering (CCPA)",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employees have active garnishments",
+          "recommendation": "Verify garnishments prioritized per Consumer Credit Protection Act: federal tax, state tax, child support, other orders"
+        },
+        {
+          "check_name": "Benefit Deductions Minimum Wage Safeguard",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": 1,
+          "details": "1 employees have net pay below minimum wage after deductions",
+          "recommendation": "Limit deductions such that net pay meets minimum wage requirements"
+        },
+        {
+          "check_name": "Tax Withholding Completeness",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employees have missing tax withholding codes",
+          "recommendation": "Ensure W-4 information is complete; verify tax withholding in payroll configuration"
+        },
+        {
+          "check_name": "Cost Center Assignment Completeness",
+          "status": "FAIL",
+          "severity": "Medium",
+          "affected_count": "2",
+          "details": "2 employees not assigned to cost center",
+          "recommendation": "Assign all employees to valid cost center for accurate expense allocation"
+        }
+      ]
+    },
+    {
+      "category": "Anomaly Detection",
+      "total_checks": 4,
+      "passed": 2,
+      "failed": 2,
+      "warnings": 0,
+      "checks": [
+        {
+          "check_name": "Unusually High Payments (>3 std dev)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "2",
+          "details": "2 payments exceed $3,817.55 (mean: $1,362.59, std: $818.32)",
+          "recommendation": "Investigate unusual payments; verify authorization and business purpose"
+        },
+        {
+          "check_name": "Duplicate Payments (Same Employee/Type)",
+          "status": "FAIL",
+          "severity": "High",
+          "affected_count": "4",
+          "details": "4 potential duplicate payments detected",
+          "recommendation": "Review for duplicate payroll entries; remove if unintended duplications"
+        },
+        {
+          "check_name": "Zero-Amount Records",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 employees have zero gross pay",
+          "recommendation": "Verify zero-pay records (unpaid leave); if unintentional, correct before submission"
+        },
+        {
+          "check_name": "Negative Deduction Amounts",
+          "status": "PASS",
+          "severity": "Low",
+          "affected_count": "0",
+          "details": "0 records have negative deduction amounts",
+          "recommendation": "Review deduction codes; negative amounts may indicate credits or adjustments"
+        }
+      ]
+    }
+  ],
+  "critical_findings": [
+    {
+      "category": "Calculation Accuracy",
+      "check_name": "Negative Gross Pay",
+      "affected_count": "1",
+      "details": "1 employees have negative gross pay amounts",
+      "recommendation": "Correct payroll entry; gross pay must be positive or zero (unpaid leave)"
+    },
+    {
+      "category": "Calculation Accuracy",
+      "check_name": "Net Pay Exceeds Gross Pay",
+      "affected_count": "2",
+      "details": "2 records have net pay exceeding gross pay",
+      "recommendation": "Review deductions and withholding; net cannot exceed gross"
+    },
+    {
+      "category": "Calculation Accuracy",
+      "check_name": "Federal Tax Exceeds Gross Pay",
+      "affected_count": "1",
+      "details": "1 employees have tax withholding exceeding gross pay",
+      "recommendation": "Review W-4 information and tax configuration; withholding cannot exceed gross"
+    }
+  ],
+  "affected_employees": {
+    "Data Completeness": [
+      "Employee 1006",
+      "Employee 1016",
+      "Employee 1013",
+      "Employee 1023",
+      "Employee 1033"
+    ],
+    "Calculation Accuracy": [
+      "Employee 1011",
+      "Employee 1011",
+      "Employee 1036",
+      "Employee 1011"
+    ],
+    "Wage Base Limits": [
+      "Employee 1021"
+    ],
+    "Anomaly Detection": [
+      "Employee 1021",
+      "Employee 1031"
+    ]
+  }
+}

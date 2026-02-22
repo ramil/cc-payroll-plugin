@@ -1,0 +1,203 @@
+{
+  "skill": "alert-triage",
+  "description": "Payroll Alert Triage Skill Evaluation Cases",
+  "version": "1.4.0",
+  "evaluation_cases": [
+    {
+      "case_id": "triage-001",
+      "case_name": "Basic Alert Triage - PCC Alert Export",
+      "description": "Test basic alert triage with 50 alerts from a standard payroll control center alert export. The input has the standard 5-column format (Validation Rule, Employee Name, Personnel Number, Processor, Status). Validates that the AI correctly classifies, prioritizes, and routes alerts based on Validation Rule names.",
+      "input_type": "file",
+      "input_file": "pcc_alerts_export.xlsx",
+      "parameters": {
+        "payroll_period": "February 2026",
+        "deadline": "2026-02-15",
+        "filter_by_priority": "none"
+      },
+      "expected_outputs": [
+        "Alerts classified by AI into domains (Data Quality, Compliance, Processing, Financial) based on Validation Rule names",
+        "Priorities assigned P1-P4 based on rule severity, blocking status, alert volume, and deadline proximity",
+        "Root causes grouped by Validation Rule for batch processing",
+        "Routing recommendations by team specialty",
+        "SLA deadlines calculated for each priority level",
+        "Unassigned 'Open' alerts flagged for processor assignment"
+      ],
+      "validation_criteria": [
+        {
+          "metric": "domain_classification_accuracy",
+          "expected_value": "> 90%",
+          "description": "At least 90% of alerts correctly classified into the right domain"
+        },
+        {
+          "metric": "priority_assignment_logic",
+          "expected_value": "correct",
+          "description": "Blocking rules = P1/P2, non-blocking = P3/P4 (adjusted by deadline and volume)"
+        },
+        {
+          "metric": "routing_team_assignment",
+          "expected_value": "matching_expertise",
+          "description": "Alerts routed to teams with appropriate expertise for the domain"
+        },
+        {
+          "metric": "batch_opportunity_identification",
+          "expected_value": "> 0",
+          "description": "At least one batch processing opportunity identified"
+        }
+      ],
+      "sample_assertions": [
+        "'Employees with missing tax withholding data' alerts classified as Data Quality",
+        "'Employees with garnishment order validation errors' alerts classified as Compliance",
+        "'Employees with duplicate wage type entries' alerts classified as Processing",
+        "'Employees with negative net pay results' alerts prioritized as P1/P2",
+        "Same Validation Rule alerts grouped together for batch resolution",
+        "Open alerts flagged for immediate attention over Resolved/Solution Applied",
+        "Unassigned alerts identified for processor assignment"
+      ]
+    },
+    {
+      "case_id": "triage-002",
+      "case_name": "Batch Processing and Workload Analysis",
+      "description": "Test batch processing recommendations and workload distribution from alert export. Validates that AI can identify efficiency gains from grouping alerts by Validation Rule and rebalancing across processors.",
+      "input_type": "file",
+      "input_file": "pcc_alerts_export.xlsx",
+      "parameters": {
+        "payroll_period": "February 2026",
+        "deadline": "2026-02-12",
+        "batch_analysis": "enabled",
+        "workload_balancing": "enabled"
+      },
+      "expected_outputs": [
+        "All 50 test alerts processed and categorized",
+        "Batch processing groups identified by Validation Rule",
+        "Workload distribution analyzed across existing processors",
+        "Time savings estimates for batch resolution",
+        "Escalation recommendations for tight deadlines"
+      ],
+      "validation_criteria": [
+        {
+          "metric": "batch_processing_efficiency",
+          "expected_value": "> 30%",
+          "description": "Identified batch opportunities save > 30% resolution time"
+        },
+        {
+          "metric": "processor_workload_balance",
+          "expected_value": "analyzed",
+          "description": "Current processor assignments analyzed with rebalancing suggestions"
+        },
+        {
+          "metric": "high_priority_alert_count",
+          "expected_value": "> 5",
+          "description": "At least 5 alerts identified as P1/P2 for urgent handling"
+        },
+        {
+          "metric": "root_cause_grouping",
+          "expected_value": "> 5",
+          "description": "At least 5 distinct Validation Rule groups identified"
+        }
+      ],
+      "sample_assertions": [
+        "'Employees with missing tax withholding data' alerts batched together",
+        "'Employees with invalid bank account details' alerts routed to same team for batch processing",
+        "'Employees with duplicate wage type entries' alerts identified as batch opportunity",
+        "Unassigned 'Open' alerts flagged for processor assignment",
+        "Processor workload assessed based on existing assignments",
+        "Workload distributed across Data, Compliance, Processing, Finance teams"
+      ]
+    },
+    {
+      "case_id": "triage-003",
+      "case_name": "Conversational Alert Triage Without File",
+      "description": "Test conversational alert triage where user describes alert situation without providing XLSX file. Validates ability to classify and prioritize based on natural language description.",
+      "input_type": "conversational",
+      "conversation_scenario": "User describes: 'We have a batch of missing tax data alerts affecting 8 employees in our biweekly payroll. Payroll runs in 3 days. We also have 2 negative net pay alerts that need immediate attention. How should we prioritize?'",
+      "parameters": {
+        "deadline": "2026-02-14",
+        "alert_count": 10,
+        "scenario_type": "urgent_batch"
+      },
+      "expected_outputs": [
+        "Missing Tax Data alerts classified as Data Quality, P2 (4-hour resolution)",
+        "Negative Net Pay alerts classified as Financial, P1 (1-hour resolution)",
+        "Routing: Tax Data → Data Operations Team, Net Pay → Finance Team",
+        "Batch processing recommendation for 8 missing tax data alerts",
+        "Escalation path for P1 negative net pay alerts",
+        "Timeline recommendation: resolve P1 within 1 hour, P2 within 4 hours"
+      ],
+      "validation_criteria": [
+        {
+          "metric": "priority_assessment_accuracy",
+          "expected_value": "P1_P2_correct",
+          "description": "Negative net pay correctly assessed as P1, tax data as P2"
+        },
+        {
+          "metric": "team_routing_logic",
+          "expected_value": "correct",
+          "description": "Correct teams recommended for each alert type"
+        },
+        {
+          "metric": "batch_recommendation",
+          "expected_value": "provided",
+          "description": "Batch processing strategy provided for 8 tax data alerts"
+        },
+        {
+          "metric": "escalation_guidance",
+          "expected_value": "clear",
+          "description": "Clear escalation path provided for P1 alerts"
+        }
+      ],
+      "sample_assertions": [
+        "Negative Net Pay alerts assigned P1 (1-hour resolution)",
+        "Missing Tax Data alerts assigned P2 (4-hour resolution)",
+        "Batch tax data processing saves 2+ hours",
+        "Recommended escalation for negative net pay immediately",
+        "Data Operations Team recommended for tax data",
+        "Finance & Reconciliation Team recommended for net pay",
+        "Recommendation to defer non-critical work during 3-day deadline"
+      ]
+    }
+  ],
+  "test_data_files": [
+    {
+      "file_name": "pcc_alerts_export.xlsx",
+      "file_path": "evals/files/pcc_alerts_export.xlsx",
+      "description": "Test alert export matching the standard payroll control center alert management view format. Contains 50 alerts with the standard 5-column layout: Validation Rule, Employee Name, Personnel Number, Processor, Status. Uses standard alert statuses (Open, Solution Applied, Resolved, Forwarded) and realistic processor IDs.",
+      "columns": ["Validation Rule", "Employee Name", "Personnel Number", "Processor", "Status"],
+      "alert_distribution": {
+        "total_alerts": 50,
+        "by_status": {
+          "Open": "~25",
+          "Solution Applied": "~5",
+          "Resolved": "~10",
+          "Forwarded": "~10"
+        },
+        "by_domain": {
+          "Data Quality": "~18",
+          "Processing": "~14",
+          "Compliance": "~8",
+          "Financial": "~10"
+        }
+      }
+    },
+    {
+      "file_name": "generate_test_data.py",
+      "file_path": "evals/files/generate_test_data.py",
+      "description": "Python script to generate additional test alert data matching standard 5-column alert export format",
+      "usage": "python generate_test_data.py --output alerts.xlsx --count 100"
+    }
+  ],
+  "success_criteria": {
+    "overall": "All three test cases pass validation criteria",
+    "case_1": "Basic triage correctly classifies, prioritizes, and routes 50 alerts from 5-column export",
+    "case_2": "Batch processing analysis identifies >30% efficiency gains from grouping by Validation Rule",
+    "case_3": "Conversational triage provides correct priority and routing recommendations",
+    "output_quality": "Clear, actionable triage recommendations with team assignments and SLA timelines"
+  },
+  "notes": [
+    "Input file uses 5-column standard format: Validation Rule, Employee Name, Personnel Number, Processor, Status",
+    "Severity is derived from the Validation Rule classification (blocking vs. non-blocking rules)",
+    "Domain classification maps Validation Rule names to Data Quality / Compliance / Processing / Financial",
+    "Alert statuses are standard values: Open, Solution Applied, Resolved, Forwarded",
+    "Batch opportunities identified by grouping same Validation Rule alerts",
+    "Conversational test validates skill's ability to work without file input"
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "_meta": {
+    "description": "Wage Type to GL Account Mapping Configuration for SAP Payroll",
+    "instructions": "Edit the 'mappings' section below to match your SAP backend configuration. Each entry maps a payroll wage type code to its corresponding GL account, category, and accounting type. To find your mappings in SAP, check tables T52EK (wage type to symbolic account) and T52EL (symbolic account to GL account).",
+    "valid_categories": ["gross", "deduction_pretax", "deduction_posttax", "tax_withholding", "employer_tax", "benefit_cost", "net_pay"],
+    "valid_types": ["income", "expense", "liability"],
+    "version": "1.0.0"
+  },
+  "mappings": {
+    "1000": {
+      "description": "Regular Salary",
+      "gl_account": "6100",
+      "category": "gross",
+      "type": "income"
+    },
+    "1010": {
+      "description": "Overtime",
+      "gl_account": "6110",
+      "category": "gross",
+      "type": "income"
+    },
+    "1020": {
+      "description": "Shift Differential",
+      "gl_account": "6120",
+      "category": "gross",
+      "type": "income"
+    },
+    "1030": {
+      "description": "Bonus",
+      "gl_account": "6130",
+      "category": "gross",
+      "type": "income"
+    },
+    "201": {
+      "description": "Health Insurance - Employee",
+      "gl_account": "2210",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "202": {
+      "description": "Dental Insurance - Employee",
+      "gl_account": "2211",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "203": {
+      "description": "Vision Insurance - Employee",
+      "gl_account": "2212",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "301": {
+      "description": "401k Deferral",
+      "gl_account": "2310",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "302": {
+      "description": "FSA Deduction",
+      "gl_account": "2311",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "303": {
+      "description": "HSA Deduction",
+      "gl_account": "2312",
+      "category": "deduction_pretax",
+      "type": "liability"
+    },
+    "101": {
+      "description": "Federal Income Tax Withholding",
+      "gl_account": "2100",
+      "category": "tax_withholding",
+      "type": "liability"
+    },
+    "102": {
+      "description": "State Income Tax Withholding",
+      "gl_account": "2120",
+      "category": "tax_withholding",
+      "type": "liability"
+    },
+    "103": {
+      "description": "Local Income Tax Withholding",
+      "gl_account": "2130",
+      "category": "tax_withholding",
+      "type": "liability"
+    },
+    "110": {
+      "description": "FICA-SS Employee Withholding",
+      "gl_account": "2140",
+      "category": "tax_withholding",
+      "type": "liability"
+    },
+    "111": {
+      "description": "FICA-Medicare Employee Withholding",
+      "gl_account": "2141",
+      "category": "tax_withholding",
+      "type": "liability"
+    },
+    "401": {
+      "description": "FICA-SS Employer",
+      "gl_account": "6200",
+      "category": "employer_tax",
+      "type": "expense"
+    },
+    "402": {
+      "description": "FICA-Medicare Employer",
+      "gl_account": "6201",
+      "category": "employer_tax",
+      "type": "expense"
+    },
+    "403": {
+      "description": "FUTA Employer",
+      "gl_account": "6202",
+      "category": "employer_tax",
+      "type": "expense"
+    },
+    "404": {
+      "description": "SUI Employer",
+      "gl_account": "6203",
+      "category": "employer_tax",
+      "type": "expense"
+    },
+    "405": {
+      "description": "Health Insurance - Employer",
+      "gl_account": "6210",
+      "category": "benefit_cost",
+      "type": "expense"
+    },
+    "406": {
+      "description": "Dental Insurance - Employer",
+      "gl_account": "6211",
+      "category": "benefit_cost",
+      "type": "expense"
+    },
+    "407": {
+      "description": "Vision Insurance - Employer",
+      "gl_account": "6212",
+      "category": "benefit_cost",
+      "type": "expense"
+    },
+    "501": {
+      "description": "Net Pay",
+      "gl_account": "2000",
+      "category": "net_pay",
+      "type": "liability"
+    }
+  }
+}

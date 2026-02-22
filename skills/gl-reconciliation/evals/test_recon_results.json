@@ -1,0 +1,360 @@
+{
+  "reconciliation_summary": {
+    "total_payroll_amount": 514025.37,
+    "total_gl_amount": 514175.38,
+    "total_variance": 150.01,
+    "matched_count": 15,
+    "unmatched_count": 5,
+    "reconciling_items_count": 2,
+    "match_rate_percent": 75.0
+  },
+  "reconciliation_results": {
+    "gross_to_net": {
+      "matched": [
+        {
+          "type": "net_pay",
+          "payroll_amount": 188169.29,
+          "gl_amount": 188169.29,
+          "variance": 0.0,
+          "gl_account": "2000"
+        },
+        {
+          "wage_type": "1000",
+          "description": "Regular Salary",
+          "payroll_amount": 277212.7199999999,
+          "gl_account": "6100",
+          "gl_amount": 277212.72000000003,
+          "variance": 1.1641532182693481e-10
+        },
+        {
+          "wage_type": "1010",
+          "description": "Overtime",
+          "payroll_amount": 7680.22,
+          "gl_account": "6110",
+          "gl_amount": 7680.22,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "1020",
+          "description": "Shift Differential",
+          "payroll_amount": 2152.44,
+          "gl_account": "6120",
+          "gl_amount": 2152.44,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "1030",
+          "description": "Bonus",
+          "payroll_amount": 5000.0,
+          "gl_account": "6130",
+          "gl_amount": 5000.0,
+          "variance": 0.0
+        }
+      ],
+      "unmatched": [],
+      "reconciling_items": [],
+      "walkdown": {
+        "total_gross": 292045.3799999999,
+        "total_deductions": 33810.699999999975,
+        "total_net": 188169.29,
+        "gl_net_pay": 188169.29
+      }
+    },
+    "employer_costs": {
+      "matched": [
+        {
+          "wage_type": "401",
+          "cost_type": "FICA-SS",
+          "payroll_amount": 18106.789999999997,
+          "gl_account": "6200",
+          "gl_amount": 18106.79,
+          "variance": 3.637978807091713e-12
+        },
+        {
+          "wage_type": "402",
+          "cost_type": "FICA-Med",
+          "payroll_amount": 4234.639999999999,
+          "gl_account": "6201",
+          "gl_amount": 4234.64,
+          "variance": 9.094947017729282e-13
+        },
+        {
+          "wage_type": "403",
+          "cost_type": "FUTA",
+          "payroll_amount": 1752.2799999999997,
+          "gl_account": "6202",
+          "gl_amount": 1752.28,
+          "variance": 2.2737367544323206e-13
+        },
+        {
+          "wage_type": "404",
+          "cost_type": "SUI",
+          "payroll_amount": 5840.9,
+          "gl_account": "6203",
+          "gl_amount": 5840.9,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "405",
+          "cost_type": "Health Ins",
+          "payroll_amount": -25000.0,
+          "gl_account": "6210",
+          "gl_amount": -25000.0,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "406",
+          "cost_type": "Dental Ins",
+          "payroll_amount": -5000.0,
+          "gl_account": "6211",
+          "gl_amount": -5000.0,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "407",
+          "cost_type": "Vision Ins",
+          "payroll_amount": -2500.0,
+          "gl_account": "6212",
+          "gl_amount": -2500.0,
+          "variance": 0.0
+        }
+      ],
+      "unmatched": [],
+      "reconciling_items": [],
+      "by_cost_type": {
+        "FICA-SS": {
+          "payroll_amount": 18106.789999999997,
+          "gl_account": "6200",
+          "gl_amount": 18106.79,
+          "variance": 3.637978807091713e-12,
+          "matched": true
+        },
+        "FICA-Med": {
+          "payroll_amount": 4234.639999999999,
+          "gl_account": "6201",
+          "gl_amount": 4234.64,
+          "variance": 9.094947017729282e-13,
+          "matched": true
+        },
+        "FUTA": {
+          "payroll_amount": 1752.2799999999997,
+          "gl_account": "6202",
+          "gl_amount": 1752.28,
+          "variance": 2.2737367544323206e-13,
+          "matched": true
+        },
+        "SUI": {
+          "payroll_amount": 5840.9,
+          "gl_account": "6203",
+          "gl_amount": 5840.9,
+          "variance": 0.0,
+          "matched": true
+        },
+        "Health Ins": {
+          "payroll_amount": -25000.0,
+          "gl_account": "6210",
+          "gl_amount": -25000.0,
+          "variance": 0.0,
+          "matched": true
+        },
+        "Dental Ins": {
+          "payroll_amount": -5000.0,
+          "gl_account": "6211",
+          "gl_amount": -5000.0,
+          "variance": 0.0,
+          "matched": true
+        },
+        "Vision Ins": {
+          "payroll_amount": -2500.0,
+          "gl_account": "6212",
+          "gl_amount": -2500.0,
+          "variance": 0.0,
+          "matched": true
+        }
+      }
+    },
+    "tax_liabilities": {
+      "matched": [
+        {
+          "wage_type": "101",
+          "jurisdiction": "Federal",
+          "payroll_amount": 30995.449999999997,
+          "gl_account": "2100",
+          "gl_amount": 30995.44,
+          "variance": 0.00999999999839929
+        },
+        {
+          "wage_type": "102",
+          "jurisdiction": "State",
+          "payroll_amount": 12914.799999999997,
+          "gl_account": "2120",
+          "gl_amount": 12914.8,
+          "variance": 1.8189894035458565e-12
+        },
+        {
+          "wage_type": "103",
+          "jurisdiction": "Local",
+          "payroll_amount": 3874.409999999999,
+          "gl_account": "2130",
+          "gl_amount": 3874.41,
+          "variance": 9.094947017729282e-13
+        }
+      ],
+      "unmatched": [
+        {
+          "wage_type": "110",
+          "jurisdiction": "FICA-SS",
+          "payroll_amount": 18106.789999999997,
+          "gl_account": "2140",
+          "gl_amount": 18106.800000000003,
+          "variance": 0.010000000005675247
+        },
+        {
+          "wage_type": "111",
+          "jurisdiction": "FICA-Med",
+          "payroll_amount": 4234.639999999999,
+          "gl_account": "2141",
+          "gl_amount": 4234.650000000001,
+          "variance": 0.010000000001127773
+        }
+      ],
+      "reconciling_items": [],
+      "by_jurisdiction": {
+        "Federal": {
+          "wage_type": "101",
+          "payroll_amount": 30995.449999999997,
+          "gl_account": "2100",
+          "gl_amount": 30995.44,
+          "variance": 0.00999999999839929,
+          "matched": true
+        },
+        "State": {
+          "wage_type": "102",
+          "payroll_amount": 12914.799999999997,
+          "gl_account": "2120",
+          "gl_amount": 12914.8,
+          "variance": 1.8189894035458565e-12,
+          "matched": true
+        },
+        "Local": {
+          "wage_type": "103",
+          "payroll_amount": 3874.409999999999,
+          "gl_account": "2130",
+          "gl_amount": 3874.41,
+          "variance": 9.094947017729282e-13,
+          "matched": true
+        },
+        "FICA-SS": {
+          "wage_type": "110",
+          "payroll_amount": 18106.789999999997,
+          "gl_account": "2140",
+          "gl_amount": 18106.800000000003,
+          "variance": 0.010000000005675247,
+          "matched": false
+        },
+        "FICA-Med": {
+          "wage_type": "111",
+          "payroll_amount": 4234.639999999999,
+          "gl_account": "2141",
+          "gl_amount": 4234.650000000001,
+          "variance": 0.010000000001127773,
+          "matched": false
+        }
+      }
+    },
+    "cost_center_allocation": {
+      "matched": [],
+      "unmatched": [
+        {
+          "cost_center": "3000",
+          "payroll_amount": 156501.83,
+          "gl_amount": 156501.81999999998,
+          "variance": 0.010000000009313226
+        },
+        {
+          "cost_center": "2000",
+          "payroll_amount": 173479.02,
+          "gl_amount": 173629.03,
+          "variance": 150.0100000000093
+        },
+        {
+          "cost_center": "1000",
+          "payroll_amount": 184044.52000000002,
+          "gl_amount": 184044.53000000003,
+          "variance": 0.010000000009313226
+        }
+      ],
+      "reconciling_items": [],
+      "by_cost_center": {
+        "3000": {
+          "payroll_amount": 156501.83,
+          "gl_amount": 156501.81999999998,
+          "variance": 0.010000000009313226,
+          "matched": false
+        },
+        "2000": {
+          "payroll_amount": 173479.02,
+          "gl_amount": 173629.03,
+          "variance": 150.0100000000093,
+          "matched": false
+        },
+        "1000": {
+          "payroll_amount": 184044.52000000002,
+          "gl_amount": 184044.53000000003,
+          "variance": 0.010000000009313226,
+          "matched": false
+        }
+      }
+    }
+  },
+  "reconciling_items": [
+    {
+      "type": "timing",
+      "description": "Multiple GL posting dates detected: 2024-02-02, 2024-02-01",
+      "resolution_steps": [
+        "Verify GL posting date configuration",
+        "Check payroll period vs GL period cutoff rules",
+        "Identify which postings belong to next period"
+      ]
+    },
+    {
+      "type": "rounding",
+      "description": "Rounding differences identified in 7 accounts (all < $0.01)",
+      "affected_items": [
+        {
+          "wage_type": "1000",
+          "variance": 1.1641532182693481e-10
+        },
+        {
+          "wage_type": "101",
+          "variance": 0.00999999999839929
+        },
+        {
+          "wage_type": "102",
+          "variance": 1.8189894035458565e-12
+        },
+        {
+          "wage_type": "103",
+          "variance": 9.094947017729282e-13
+        },
+        {
+          "wage_type": "401",
+          "variance": 3.637978807091713e-12
+        },
+        {
+          "wage_type": "402",
+          "variance": 9.094947017729282e-13
+        },
+        {
+          "wage_type": "403",
+          "variance": 2.2737367544323206e-13
+        }
+      ],
+      "resolution_steps": [
+        "Verify aggregation level (employee vs GL posting)",
+        "Check if GL consolidation rules apply",
+        "Acceptable if total < $0.01"
+      ]
+    }
+  ]
+}

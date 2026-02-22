@@ -1,0 +1,129 @@
+{
+  "evals": [
+    {
+      "id": "eval_001_clean_reconciliation",
+      "name": "Basic Gross-to-Net Reconciliation with Clean Data",
+      "description": "Tests basic GL reconciliation with clean payroll and GL data. No major discrepancies. Should achieve 100% match rate.",
+      "scenario": "Monthly payroll processing with standard GL timing. All wage types reconcile cleanly to GL accounts. Net pay matches liability account.",
+      "input_files": [
+        "files/payroll_results.xlsx",
+        "files/gl_postings.xlsx"
+      ],
+      "command": "python ../scripts/reconcile_payroll_gl.py files/payroll_results.xlsx files/gl_postings.xlsx --recon-type gross_to_net --tolerance 0.01 --output eval_001_results.json",
+      "expected_outcomes": {
+        "match_rate_percent_min": 70.0,
+        "total_variance_max": 500.0,
+        "description": "Should show reasonable match rate. Unmatched items expected due to intentional test discrepancies (timing, retro, missing). Gross-to-net walkdown should identify variance drivers."
+      },
+      "test_focus": [
+        "Basic wage type matching",
+        "GL account mapping",
+        "Gross-to-net calculation",
+        "Tolerance-based matching"
+      ]
+    },
+    {
+      "id": "eval_002_complex_with_timing_and_retro",
+      "name": "Complex Reconciliation with Timing Differences and Retro Adjustments",
+      "description": "Tests reconciliation with timing mismatches between payroll and GL, plus retroactive adjustments. Should identify reconciling items correctly.",
+      "scenario": "Payroll processed 1/31 but GL posted 2/1. Includes retroactive bonus adjustment split across clearing account. Tests identification of timing differences and retro adjustments.",
+      "input_files": [
+        "files/payroll_results.xlsx",
+        "files/gl_postings.xlsx"
+      ],
+      "command": "python ../scripts/reconcile_payroll_gl.py files/payroll_results.xlsx files/gl_postings.xlsx --recon-type all --tolerance 0.01 --output eval_002_results.json",
+      "expected_outcomes": {
+        "match_rate_percent_min": 70.0,
+        "reconciling_items_min": 1,
+        "description": "Should identify timing differences and rounding in reconciling items. Unmatched items from retro and missing GL are expected. Multi-type reconciliation should complete."
+      },
+      "test_focus": [
+        "Timing difference detection",
+        "Retroactive adjustment handling",
+        "Clearing account reconciliation",
+        "Rounding variance identification",
+        "Multi-type reconciliation (all)"
+      ]
+    },
+    {
+      "id": "eval_003_cost_center_with_unmatched",
+      "name": "Cost Center-Level Reconciliation with Unmatched Items",
+      "description": "Tests cost center allocation reconciliation. Includes intentional unmatched item (missing GL posting). Should identify and report unmatched items.",
+      "scenario": "Validates payroll allocation by cost center against GL postings. One wage type/cost center combination missing GL posting. Tests unmatched item identification and variance analysis by cost center.",
+      "input_files": [
+        "files/payroll_results.xlsx",
+        "files/gl_postings.xlsx"
+      ],
+      "command": "python ../scripts/reconcile_payroll_gl.py files/payroll_results.xlsx files/gl_postings.xlsx --recon-type cost_center_allocation --tolerance 0.01 --output eval_003_results.json && python ../scripts/generate_recon_report.py eval_003_results.json --output eval_003_report.xlsx",
+      "expected_outcomes": {
+        "match_rate_percent_min": 60.0,
+        "unmatched_count_min": 1,
+        "description": "Should identify missing GL posting for wage type 1010, cost center 1000. Cost center allocation should show variance. Report should clearly show unmatched items."
+      },
+      "test_focus": [
+        "Cost center allocation reconciliation",
+        "Unmatched item detection",
+        "Report generation with multiple sheets",
+        "Variance analysis by cost center",
+        "Data quality validation"
+      ]
+    }
+  ],
+  "test_data_generation": {
+    "script": "files/generate_test_data.py",
+    "usage": "python evals/files/generate_test_data.py --output-dir evals/files/ --employees 50",
+    "generated_files": [
+      {
+        "file": "payroll_results.xlsx",
+        "description": "Payroll results with 50 employees, wage types (income, deductions, taxes, employer costs), cost center assignment",
+        "rows": "~1000 (multiple wage types per employee)",
+        "columns": ["Employee_ID", "Employee_Name", "Wage_Type", "Amount", "Cost_Center", "Pay_Period_Start", "Pay_Period_End"]
+      },
+      {
+        "file": "gl_postings.xlsx",
+        "description": "GL account level postings derived from payroll with intentional discrepancies",
+        "rows": "~200 (aggregated by wage type + cost center)",
+        "columns": ["GL_Account", "Cost_Center", "Amount", "Posting_Date", "Document_Number", "Document_Type"]
+      }
+    ],
+    "intentional_discrepancies": [
+      {
+        "type": "Timing Difference",
+        "count": 2,
+        "description": "Payroll processed 1/31, GL posted 2/1 (standard SAP payroll-to-GL posting timing)"
+      },
+      {
+        "type": "Rounding Difference",
+        "count": 3,
+        "description": "3 x $0.01 rounding variances from employee-level vs GL-level aggregation"
+      },
+      {
+        "type": "Retro Adjustment",
+        "count": 1,
+        "description": "Wage type 1030 (Bonus) split 50/50: 50% normal posting, 50% through clearing account 9100"
+      },
+      {
+        "type": "Missing GL Posting",
+        "count": 1,
+        "description": "Wage type 1010 (Overtime), Cost Center 1000 not posted to GL (will show as unmatched)"
+      }
+    ]
+  },
+  "skill_validation": {
+    "python_version": "3.10+",
+    "required_packages": [
+      "pandas",
+      "openpyxl",
+      "jsonschema"
+    ],
+    "validation_steps": [
+      "Verify SKILL.md is valid Markdown with proper frontmatter",
+      "Verify reconcile_payroll_gl.py handles flexible column matching",
+      "Verify reconcile_payroll_gl.py outputs valid JSON",
+      "Verify generate_recon_report.py creates multi-sheet XLSX",
+      "Verify references are comprehensive and well-formatted",
+      "Run all three eval cases and verify expected outcomes",
+      "Verify CLI argument handling matches specification"
+    ]
+  }
+}

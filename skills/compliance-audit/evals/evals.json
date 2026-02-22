@@ -1,0 +1,165 @@
+{
+  "version": "1.0",
+  "description": "Evaluation cases for compliance-audit skill",
+  "evals": [
+    {
+      "name": "Clean Payroll Data",
+      "description": "Clean payroll with minimal issues - should score 10-15 risk score (Low Risk)",
+      "scenario": "Standard monthly payroll processing with complete data and accurate calculations",
+      "input_file": "payroll_clean.xlsx",
+      "expected_outcome": {
+        "risk_score_min": 10,
+        "risk_score_max": 20,
+        "risk_level": "Low Risk",
+        "overall_status": "PASS",
+        "pass_count_min": 25,
+        "fail_count_max": 2,
+        "critical_findings_count": 0,
+        "should_process": true
+      },
+      "test_steps": [
+        "Run validate_payroll.py on payroll_clean.xlsx",
+        "Verify risk score between 10-20",
+        "Verify overall_status is PASS",
+        "Verify critical_findings is empty",
+        "Verify pass_count >= 25 (most checks should pass)",
+        "Run generate_audit_report.py",
+        "Verify Executive Summary shows Low Risk",
+        "Verify Critical Findings sheet is empty or minimal"
+      ]
+    },
+    {
+      "name": "Payroll with Compliance Violations",
+      "description": "Payroll with multiple compliance violations - should score 55-70 (High Risk)",
+      "scenario": "Payroll with critical data quality, calculation, and compliance issues requiring management review",
+      "input_file": "payroll_data.xlsx",
+      "expected_outcome": {
+        "risk_score_min": 55,
+        "risk_score_max": 75,
+        "risk_level": "High Risk",
+        "overall_status": "FAIL",
+        "pass_count_max": 20,
+        "fail_count_min": 5,
+        "critical_findings_count": 3,
+        "should_process": false,
+        "expected_issues": [
+          "SS wage base exceeded with continued withholding",
+          "Garnishment exceeding 25% of disposable earnings",
+          "Overtime rate at 1.25x instead of 1.5x FLSA",
+          "Duplicate employee records in export",
+          "Unusually high payment (statistical outlier)",
+          "Missing department codes",
+          "Tax withholding rate anomaly",
+          "Zero or negative net pay from excessive deductions"
+        ]
+      },
+      "test_steps": [
+        "Run generate_test_data.py to create payroll_data.xlsx",
+        "Run validate_payroll.py on payroll_data.xlsx",
+        "Verify risk score between 55-75",
+        "Verify overall_status is FAIL",
+        "Verify critical_findings has 3+ items",
+        "Verify fail_count >= 5",
+        "Verify 'SS Wage Base Exceeded' check fails (employee with YTD $180K still has SS withholding)",
+        "Verify 'Garnishment Limit' check fails (employee at 30% of disposable, exceeds 25%)",
+        "Verify 'Overtime Rate Validation' check fails (1.25x instead of 1.5x FLSA)",
+        "Verify 'Duplicate Employee Records' check fails (2 duplicate records)",
+        "Verify 'Unusually High Payments' check fails (>3 std dev from mean)",
+        "Verify 'Missing Department' check fails (3 employees with null department)",
+        "Verify 'Tax Withholding Anomaly' check fails (3% effective rate on $12K gross)",
+        "Verify 'Zero Net Pay' check fails (deductions exceed gross)",
+        "Run generate_audit_report.py",
+        "Verify Critical Findings sheet lists all critical items",
+        "Verify Affected Employees sheet identifies all employees with issues",
+        "Verify risk level in Executive Summary is High Risk"
+      ]
+    },
+    {
+      "name": "Pre-Production Validation with Prior Period",
+      "description": "Pre-production validation comparing to prior period - should score 35-50 (Medium Risk) with prior period anomalies",
+      "scenario": "Go-live payroll validation with significant payroll variance and headcount changes",
+      "input_file": "payroll_live.xlsx",
+      "prior_file": "payroll_prior.xlsx",
+      "expected_outcome": {
+        "risk_score_min": 35,
+        "risk_score_max": 50,
+        "risk_level": "Medium Risk",
+        "overall_status": "FAIL",
+        "pass_count_min": 18,
+        "fail_count_min": 3,
+        "critical_findings_count": 0,
+        "prior_period_comparison_enabled": true,
+        "expected_anomalies": [
+          "Payroll variance >10%",
+          "Headcount change >5%",
+          "Average pay variance >15%",
+          "New employees",
+          "Terminated employees"
+        ]
+      },
+      "test_steps": [
+        "Generate or obtain payroll_live.xlsx (current period)",
+        "Generate or obtain payroll_prior.xlsx (prior period)",
+        "Run validate_payroll.py payroll_live.xlsx --prior payroll_prior.xlsx",
+        "Verify risk score between 35-50",
+        "Verify risk_level is Medium Risk",
+        "Verify overall_status is FAIL",
+        "Verify Prior Period Comparison checks are present",
+        "Verify 'Total Payroll Variance' check shows >10% variance",
+        "Verify 'Headcount Change' check shows >5% change",
+        "Verify 'Average Pay Variance' check shows significant change",
+        "Verify 'New Employee Validation' check runs",
+        "Verify 'Terminated Employee Validation' check runs",
+        "Run generate_audit_report.py with prior period included",
+        "Verify Prior Period Comparison worksheet exists",
+        "Verify audit report includes variance analysis",
+        "Verify affected_employees section is populated",
+        "Verify Executive Summary risk score calculation is correct"
+      ]
+    }
+  ],
+  "test_data_generation": {
+    "script": "generate_test_data.py",
+    "output_file": "payroll_data.xlsx",
+    "records": 50,
+    "deliberate_issues": {
+      "ss_wage_base_exceeded_with_withholding": 1,
+      "garnishment_exceeding_25pct": 1,
+      "overtime_rate_error_125x": 1,
+      "duplicate_records": 2,
+      "unusually_high_payment_outlier": 1,
+      "missing_departments": 3,
+      "tax_withholding_anomaly": 1,
+      "zero_negative_net_pay": 1
+    }
+  },
+  "validation_standards": {
+    "data_completeness": {
+      "minimum_fields": ["Employee_ID", "Employee_Name", "Gross_Pay", "Cost_Center", "Payroll_Area", "EE_Status"],
+      "optional_fields": ["Department", "Hire_Date", "Term_Date", "YTD_Earnings"],
+      "duplicate_detection": true
+    },
+    "calculation_accuracy": {
+      "negative_gross_pay": "Critical - must be caught",
+      "net_exceeds_gross": "Critical - must be caught",
+      "tax_exceeds_gross": "Critical - must be caught",
+      "overtime_validation": "High - 1.5x minimum",
+      "fica_rates": "High - 6.2% SS, 1.45% Medicare",
+      "garnishment_limit": "High - 25% maximum"
+    },
+    "wage_base_limits": {
+      "ss_limit": 176100,
+      "ss_limit_year": 2025,
+      "futa_limit": 7000,
+      "medicare_threshold": 200000
+    },
+    "risk_scoring": {
+      "critical_weight": 100,
+      "high_weight": 50,
+      "medium_weight": 20,
+      "low_weight": 5,
+      "target_low_risk_max": 20,
+      "target_processing_threshold": 40
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "skill_name": "payroll-reporting",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to send our VP of Finance a summary of this month's payroll. Can you create an executive report from this payroll export? Keep it high-level with the key numbers she needs to see.",
+      "expected_output": "An executive summary report with key payroll metrics, period totals, cost center breakdown, and notable items",
+      "files": ["evals/files/payroll_summary.xlsx"],
+      "expectations": [
+        "The output includes total gross pay and total net pay figures",
+        "The output includes employee headcount",
+        "The output includes a cost center breakdown",
+        "The output is formatted for executive consumption (concise, high-level)",
+        "A report file (DOCX or XLSX) is generated",
+        "The output includes AI-generated commentary explaining key metrics"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "how many people are in department 200 and what's their total labor cost including employer contributions? also break it down by cost center",
+      "expected_output": "A direct answer with department 200 headcount, total labor cost, and cost center breakdown",
+      "files": ["evals/files/payroll_summary.xlsx"],
+      "expectations": [
+        "The output correctly identifies the number of employees in department 200",
+        "The output includes total labor cost (gross + employer contributions)",
+        "The output provides a cost center breakdown within department 200",
+        "Dollar amounts are formatted properly",
+        "The response is conversational and direct (not a full formal report)"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We need to send the period-end payroll report to our client Acme Corp. Use their standard format - processing summary, headcount, total costs by department, and any exceptions or issues we found during processing.",
+      "expected_output": "A BPO client report formatted for Acme Corp with processing summary, metrics, and exception details",
+      "files": ["evals/files/payroll_summary.xlsx"],
+      "expectations": [
+        "The report is structured as a client deliverable (not internal)",
+        "The output includes a processing summary section",
+        "The output includes headcount figures",
+        "The output includes costs broken down by department",
+        "The report uses professional client-facing language",
+        "A DOCX or XLSX report file is generated"
+      ]
+    }
+  ]
+}

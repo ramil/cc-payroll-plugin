@@ -1,0 +1,381 @@
+{
+  "affected_employees": [
+    {
+      "employee_id": "E001",
+      "employee_name": "Employee 1",
+      "total_retro_delta": 1040.43,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Medium",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 5000.0,
+          "current": 5416.67,
+          "delta": 416.67
+        },
+        "/103": {
+          "prior": -625.0,
+          "current": -677.08,
+          "delta": -52.08
+        },
+        "/104": {
+          "prior": -250.0,
+          "current": -270.83,
+          "delta": -20.83
+        },
+        "/105": {
+          "prior": -382.5,
+          "current": -414.38,
+          "delta": -31.88
+        },
+        "/551": {
+          "prior": 0.0,
+          "current": 416.67,
+          "delta": 416.67
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3604.38,
+          "delta": 311.88
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E002",
+      "employee_name": "Employee 2",
+      "total_retro_delta": 1040.43,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Medium",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 5000.0,
+          "current": 5416.67,
+          "delta": 416.67
+        },
+        "/103": {
+          "prior": -625.0,
+          "current": -677.08,
+          "delta": -52.08
+        },
+        "/104": {
+          "prior": -250.0,
+          "current": -270.83,
+          "delta": -20.83
+        },
+        "/105": {
+          "prior": -382.5,
+          "current": -414.38,
+          "delta": -31.88
+        },
+        "/551": {
+          "prior": 0.0,
+          "current": 416.67,
+          "delta": 416.67
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3604.38,
+          "delta": 311.88
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E003",
+      "employee_name": "Employee 3",
+      "total_retro_delta": 1040.43,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Medium",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 5000.0,
+          "current": 5416.67,
+          "delta": 416.67
+        },
+        "/103": {
+          "prior": -625.0,
+          "current": -677.08,
+          "delta": -52.08
+        },
+        "/104": {
+          "prior": -250.0,
+          "current": -270.83,
+          "delta": -20.83
+        },
+        "/105": {
+          "prior": -382.5,
+          "current": -414.38,
+          "delta": -31.88
+        },
+        "/551": {
+          "prior": 0.0,
+          "current": 416.67,
+          "delta": 416.67
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3604.38,
+          "delta": 311.88
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E004",
+      "employee_name": "Employee 4",
+      "total_retro_delta": 1040.43,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Medium",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 5000.0,
+          "current": 5416.67,
+          "delta": 416.67
+        },
+        "/103": {
+          "prior": -625.0,
+          "current": -677.08,
+          "delta": -52.08
+        },
+        "/104": {
+          "prior": -250.0,
+          "current": -270.83,
+          "delta": -20.83
+        },
+        "/105": {
+          "prior": -382.5,
+          "current": -414.38,
+          "delta": -31.88
+        },
+        "/551": {
+          "prior": 0.0,
+          "current": 416.67,
+          "delta": 416.67
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3604.38,
+          "delta": 311.88
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E005",
+      "employee_name": "Employee 5",
+      "total_retro_delta": 1040.43,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Medium",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 5000.0,
+          "current": 5416.67,
+          "delta": 416.67
+        },
+        "/103": {
+          "prior": -625.0,
+          "current": -677.08,
+          "delta": -52.08
+        },
+        "/104": {
+          "prior": -250.0,
+          "current": -270.83,
+          "delta": -20.83
+        },
+        "/105": {
+          "prior": -382.5,
+          "current": -414.38,
+          "delta": -31.88
+        },
+        "/551": {
+          "prior": 0.0,
+          "current": 416.67,
+          "delta": 416.67
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3604.38,
+          "delta": 311.88
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E009",
+      "employee_name": "Employee 9",
+      "total_retro_delta": -250.0,
+      "retro_type": "Tax Correction",
+      "risk_level": "Low",
+      "wage_type_changes": {
+        "/103": {
+          "prior": -625.0,
+          "current": -875.0,
+          "delta": -250.0
+        }
+      },
+      "cost_center": "4300",
+      "department": "Finance",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E010",
+      "employee_name": "Employee 10",
+      "total_retro_delta": -250.0,
+      "retro_type": "Tax Correction",
+      "risk_level": "Low",
+      "wage_type_changes": {
+        "/103": {
+          "prior": -625.0,
+          "current": -875.0,
+          "delta": -250.0
+        }
+      },
+      "cost_center": "4300",
+      "department": "Finance",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E011",
+      "employee_name": "Employee 11",
+      "total_retro_delta": -100.0,
+      "retro_type": "Benefit Change",
+      "risk_level": "Low",
+      "wage_type_changes": {
+        "/200": {
+          "prior": -250.0,
+          "current": -300.0,
+          "delta": -50.0
+        },
+        "/560": {
+          "prior": 3292.5,
+          "current": 3242.5,
+          "delta": -50.0
+        }
+      },
+      "cost_center": "4100",
+      "department": "Engineering",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E012",
+      "employee_name": "Employee 12 (Terminated)",
+      "total_retro_delta": 250.0,
+      "retro_type": "General Adjustment",
+      "risk_level": "Low",
+      "wage_type_changes": {
+        "/110": {
+          "prior": 3000.0,
+          "current": 3250.0,
+          "delta": 250.0
+        }
+      },
+      "cost_center": "4400",
+      "department": "HR",
+      "edge_cases": []
+    },
+    {
+      "employee_id": "E013",
+      "employee_name": "Employee 13 (New Hire)",
+      "total_retro_delta": 6585.0,
+      "retro_type": "Pay Rate Change",
+      "risk_level": "Critical",
+      "wage_type_changes": {
+        "/100": {
+          "prior": 0.0,
+          "current": 5000.0,
+          "delta": 5000.0
+        },
+        "/103": {
+          "prior": 0.0,
+          "current": -625.0,
+          "delta": -625.0
+        },
+        "/104": {
+          "prior": 0.0,
+          "current": -250.0,
+          "delta": -250.0
+        },
+        "/105": {
+          "prior": 0.0,
+          "current": -382.5,
+          "delta": -382.5
+        },
+        "/200": {
+          "prior": 0.0,
+          "current": -250.0,
+          "delta": -250.0
+        },
+        "/201": {
+          "prior": 0.0,
+          "current": -200.0,
+          "delta": -200.0
+        },
+        "/560": {
+          "prior": 0.0,
+          "current": 3292.5,
+          "delta": 3292.5
+        }
+      },
+      "cost_center": "4500",
+      "department": "Operations",
+      "edge_cases": [
+        "No Prior Period Data (Possible New Hire Retro)",
+        "High-Value Retro (>$5000)"
+      ]
+    }
+  ],
+  "retro_summary": {
+    "total_employees_affected": 10,
+    "total_retro_amount": 11437.15,
+    "by_retro_type": {
+      "Pay Rate Change": 6,
+      "Tax Correction": 2,
+      "Benefit Change": 1,
+      "General Adjustment": 1
+    },
+    "by_risk_level": {
+      "Medium": 5,
+      "Low": 4,
+      "Critical": 1
+    }
+  },
+  "gl_impact": {
+    "estimated_accounts_affected": [
+      "2100",
+      "2110",
+      "2120",
+      "2200",
+      "2210",
+      "4100",
+      "4200",
+      "5100"
+    ],
+    "total_difference_amount": 11437.15,
+    "by_cost_center": {
+      "4100": 5102.15,
+      "4300": -500.0,
+      "4400": 250.0,
+      "4500": 6585.0
+    },
+    "by_department": {
+      "Engineering": 5102.15,
+      "Finance": -500.0,
+      "HR": 250.0,
+      "Operations": 6585.0
+    }
+  },
+  "edge_case_warnings": [
+    "E013: High-Value Retro (>$5000)",
+    "E013: No Prior Period Data (Possible New Hire Retro)"
+  ]
+}

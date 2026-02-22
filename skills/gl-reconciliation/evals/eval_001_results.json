@@ -1,0 +1,109 @@
+{
+  "reconciliation_summary": {
+    "total_payroll_amount": 352528.93,
+    "total_gl_amount": 352528.94,
+    "total_variance": 0.01,
+    "matched_count": 5,
+    "unmatched_count": 0,
+    "reconciling_items_count": 1,
+    "match_rate_percent": 100.0
+  },
+  "reconciliation_results": {
+    "gross_to_net": {
+      "matched": [
+        {
+          "type": "net_pay",
+          "payroll_amount": 131443.90000000005,
+          "gl_amount": 131443.9,
+          "variance": 5.820766091346741e-11,
+          "gl_account": "2000"
+        },
+        {
+          "wage_type": "1000",
+          "description": "Regular Salary",
+          "payroll_amount": 202412.28000000003,
+          "gl_account": "6100",
+          "gl_amount": 202412.28,
+          "variance": 2.9103830456733704e-11
+        },
+        {
+          "wage_type": "1010",
+          "description": "Overtime",
+          "payroll_amount": 5931.77,
+          "gl_account": "6110",
+          "gl_amount": 5931.77,
+          "variance": 0.0
+        },
+        {
+          "wage_type": "1020",
+          "description": "Shift Differential",
+          "payroll_amount": 1889.68,
+          "gl_account": "6120",
+          "gl_amount": 1889.6799999999998,
+          "variance": 2.2737367544323206e-13
+        },
+        {
+          "wage_type": "1030",
+          "description": "Bonus",
+          "payroll_amount": 5000.0,
+          "gl_account": "6130",
+          "gl_amount": 5000.0,
+          "variance": 0.0
+        }
+      ],
+      "unmatched": [],
+      "reconciling_items": [],
+      "walkdown": {
+        "total_gross": 215233.73,
+        "total_deductions": 5851.300000000001,
+        "total_net": 131443.90000000005,
+        "gl_net_pay": 131443.9
+      }
+    }
+  },
+  "reconciling_items": [
+    {
+      "type": "rounding",
+      "description": "Rounding differences identified in 8 accounts (all < $0.01)",
+      "affected_items": [
+        {
+          "wage_type": "1000",
+          "variance": 2.9103830456733704e-11
+        },
+        {
+          "wage_type": "1020",
+          "variance": 2.2737367544323206e-13
+        },
+        {
+          "wage_type": "103",
+          "variance": 4.547473508864641e-13
+        },
+        {
+          "wage_type": "111",
+          "variance": 0.009999999999763531
+        },
+        {
+          "wage_type": "401",
+          "variance": 1.8189894035458565e-12
+        },
+        {
+          "wage_type": "402",
+          "variance": 4.547473508864641e-13
+        },
+        {
+          "wage_type": "404",
+          "variance": 1.8189894035458565e-12
+        },
+        {
+          "wage_type": "501",
+          "variance": 5.820766091346741e-11
+        }
+      ],
+      "resolution_steps": [
+        "Verify aggregation level (employee vs GL posting)",
+        "Check if GL consolidation rules apply",
+        "Acceptable if total < $0.01"
+      ]
+    }
+  ]
+}

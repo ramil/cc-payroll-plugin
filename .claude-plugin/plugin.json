@@ -1,0 +1,8 @@
+{
+  "name": "cc-payroll",
+  "version": "0.1.0-alpha",
+  "description": "AI-powered payroll operations companion for SAP Payroll Control Center. Analyze period-over-period variances, generate stakeholder reports, reconcile payroll to GL, triage alerts, validate compliance, and analyze retroactive adjustments. Includes 7 core skills: Variance Analyzer, Payroll Reporting, Payroll Knowledge Base, GL Reconciliation, Alert Triage, Compliance Audit, and Retro Processing. Works with your existing XLSX exports — no SAP integration required.",
+  "author": {
+    "name": "Ramilo Segarra"
+  }
+}

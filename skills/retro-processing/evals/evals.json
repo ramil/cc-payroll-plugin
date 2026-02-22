@@ -1,0 +1,193 @@
+{
+  "version": "1.0",
+  "skill": "retro-processing",
+  "description": "Evaluation suite for retroactive payroll processing skill",
+  "created": "2025-02-07",
+  "evals": [
+    {
+      "id": "eval_001",
+      "name": "Simple Salary Increase Retro",
+      "description": "Analyze a straightforward salary increase retroactively applied to 5 employees for a single period with clean data.",
+      "difficulty": "easy",
+      "category": "basic_retro",
+      "scenario": {
+        "type": "pay_rate_change",
+        "change_description": "5% salary increase effective retroactively to January 2024",
+        "affected_employees": 5,
+        "affected_periods": 1,
+        "employees": ["E001", "E002", "E003", "E004", "E005"],
+        "expected_retro_type": "Pay Rate Change",
+        "data_quality": "clean"
+      },
+      "test_inputs": {
+        "current_results_file": "files/current_results.xlsx",
+        "prior_results_file": "files/prior_results.xlsx"
+      },
+      "expected_outcomes": {
+        "affected_employees_count": 5,
+        "retro_types": {
+          "Pay Rate Change": 5
+        },
+        "risk_distribution": {
+          "Low": 5
+        },
+        "total_retro_amount_range": {
+          "min": 2000,
+          "max": 2500
+        },
+        "edge_cases": []
+      },
+      "evaluation_steps": [
+        "Run analyze_retro_impact.py with current and prior results",
+        "Verify exactly 5 affected employees are identified",
+        "Confirm all 5 are classified as 'Pay Rate Change'",
+        "Verify retro amounts are approximately 5% of salary",
+        "Check that /551 wage type differences are present for base salary",
+        "Confirm no edge case warnings are generated"
+      ]
+    },
+    {
+      "id": "eval_002",
+      "name": "Complex Multi-Type Retro with Risk Assessment",
+      "description": "Analyze a complex retroactive scenario with multiple retro types affecting 15 employees, including pay rate changes, organizational reassignments, and tax corrections.",
+      "difficulty": "medium",
+      "category": "complex_retro",
+      "scenario": {
+        "type": "multi_type_retro",
+        "change_description": "Multiple changes: salary increases (5 emp), org reassignments (3 emp), tax corrections (2 emp), benefit change (1 emp), terminated employee correction (1 emp), new hire backdated (1 emp)",
+        "affected_employees": 13,
+        "affected_periods": 1,
+        "employees": ["E001-E005", "E006-E008", "E009-E010", "E011", "E012", "E013"],
+        "expected_retro_types": ["Pay Rate Change", "Organizational Reassignment", "Tax Correction", "Benefit Change"],
+        "data_quality": "clean"
+      },
+      "test_inputs": {
+        "current_results_file": "files/current_results.xlsx",
+        "prior_results_file": "files/prior_results.xlsx"
+      },
+      "expected_outcomes": {
+        "affected_employees_count": 13,
+        "retro_types": {
+          "Pay Rate Change": 5,
+          "Organizational Reassignment": 3,
+          "Tax Correction": 2,
+          "Benefit Change": 1
+        },
+        "risk_distribution": {
+          "Low": 3,
+          "Medium": 9,
+          "High": 1
+        },
+        "total_retro_amount_range": {
+          "min": 4500,
+          "max": 5500
+        },
+        "edge_cases": [
+          "Terminated employee with retro",
+          "New hire retro"
+        ]
+      },
+      "evaluation_steps": [
+        "Run analyze_retro_impact.py with current and prior results",
+        "Verify 13 affected employees are identified",
+        "Confirm retro type classifications are correct for each scenario",
+        "Verify risk assessment correctly identifies High risk (terminated/new hire)",
+        "Check GL impact includes accounts for tax, benefits, and salary",
+        "Validate edge case warnings for terminated employee and new hire are generated",
+        "Verify total retro amount is in expected range",
+        "Generate report using generate_retro_report.py",
+        "Verify multi-sheet report includes all scenarios"
+      ]
+    },
+    {
+      "id": "eval_003",
+      "name": "Edge Case Scenario with Year Boundary and Terminated Employee",
+      "description": "Handle a complex scenario with year-boundary crossing and retroactive adjustment for a terminated employee's final pay.",
+      "difficulty": "hard",
+      "category": "edge_cases",
+      "scenario": {
+        "type": "edge_case_combo",
+        "change_description": "Final pay correction for terminated employee (E012) with retroactive vacation payout adjustment; spans Dec 2023-Jan 2024 year boundary",
+        "affected_employees": 1,
+        "affected_periods": 2,
+        "employees": ["E012"],
+        "expected_retro_types": ["Termination Correction"],
+        "special_considerations": [
+          "Year boundary crossing",
+          "Terminated employee",
+          "Vacation payout impact",
+          "Final pay adjustment"
+        ],
+        "data_quality": "clean"
+      },
+      "test_inputs": {
+        "current_results_file": "files/current_results.xlsx",
+        "prior_results_file": "files/prior_results.xlsx"
+      },
+      "expected_outcomes": {
+        "affected_employees_count": 1,
+        "retro_types": {
+          "System Adjustment": 1
+        },
+        "risk_distribution": {
+          "Critical": 1
+        },
+        "total_retro_amount_range": {
+          "min": 200,
+          "max": 400
+        },
+        "edge_cases": [
+          "Terminated employee with retro",
+          "Vacation payout adjustment",
+          "Final pay correction"
+        ]
+      },
+      "evaluation_steps": [
+        "Run analyze_retro_impact.py with current and prior results",
+        "Verify terminated employee (E012) is identified with correct edge case flags",
+        "Confirm risk level is assessed as Critical (due to terminated employee flag)",
+        "Validate that vacation payout changes are captured in wage type breakdown",
+        "Check that edge case warnings include 'Terminated employee' and 'High-Value Retro' (if applicable)",
+        "Verify GL impact accounts for both salary and vacation payout",
+        "Generate report and review 'Edge Cases' sheet for detailed warnings",
+        "Confirm approval checklist flags this as requiring executive review",
+        "Validate retro amount accounts for the vacation payout difference"
+      ]
+    }
+  ],
+  "integration_tests": [
+    {
+      "id": "integration_001",
+      "name": "End-to-End Retro Analysis and Reporting",
+      "description": "Complete workflow: analyze retro impact, then generate comprehensive XLSX report",
+      "steps": [
+        "python3 scripts/analyze_retro_impact.py evals/files/current_results.xlsx evals/files/prior_results.xlsx --output /tmp/test_analysis.json",
+        "python3 scripts/generate_retro_report.py /tmp/test_analysis.json --output /tmp/test_report.xlsx",
+        "Verify test_analysis.json contains all expected fields",
+        "Verify test_report.xlsx has 7 sheets (Summary, Employee Detail, By Retro Type, GL Impact, Risk Assessment, Edge Cases, Approval Checklist)",
+        "Confirm Summary sheet shows correct affected employee count",
+        "Confirm Employee Detail sheet has one row per wage type change",
+        "Confirm GL Impact sheet lists all affected GL accounts",
+        "Confirm Risk Assessment sheet is sorted by risk level",
+        "Confirm Edge Cases sheet contains warnings",
+        "Confirm Approval Checklist is ready for sign-off"
+      ]
+    }
+  ],
+  "data_quality_notes": {
+    "test_data_description": "Generated test dataset with 50 employees (E001-E050) across 6 departments and 5 cost centers. Each record includes EE_Status field (0=Active, 3=Withdrawn/Terminated) per SAP infotype 0000.",
+    "scenarios_included": [
+      "5 employees with 5% salary increase (E001-E005)",
+      "3 employees with cost center reassignment (E006-E008)",
+      "2 employees with tax correction (E009-E010)",
+      "1 employee with benefit enrollment increase (E011)",
+      "1 terminated employee with final pay adjustment (E012)",
+      "1 new hire with backdated start (E013)",
+      "37 employees with no retro changes (E014-E050)"
+    ],
+    "data_files": {
+      "prior_results.xlsx": "Pre-retro payroll results for all 50 employees",
+      "current_results.xlsx": "Post-retro payroll results with deliberate differences"
+    }
+  }
+}

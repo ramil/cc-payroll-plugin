@@ -1,0 +1,107 @@
+{
+  "skill_name": "variance-analyzer",
+  "version": "1.1.0",
+  "notes": "Updated to match actual SAP payroll result export format. Personnel Numbers are 8-digit PERNR, Payroll Area is 2-char ABKRS (BW=biweekly, SM=semi-monthly), wage types use customer codes aligned with wage-type-categories.md, deductions are negative amounts.",
+  "test_data_files": {
+    "payroll_current.xlsx": {
+      "description": "Current period (Feb 2026) payroll results — 38 employees (36 core + 2 new hires), 13 wage types per employee",
+      "columns": ["Personnel Number", "Employee Name", "Payroll Area", "Payroll Period", "Cost Center", "Wage Type", "Wage Type Text", "Amount", "Currency"],
+      "row_count": "~494",
+      "sheet_name": "Payroll Results",
+      "period": "202602"
+    },
+    "payroll_prior.xlsx": {
+      "description": "Prior period (Jan 2026) payroll results — 38 employees (36 core + 2 terminated), 13 wage types per employee",
+      "columns": ["Personnel Number", "Employee Name", "Payroll Area", "Payroll Period", "Cost Center", "Wage Type", "Wage Type Text", "Amount", "Currency"],
+      "row_count": "~494",
+      "sheet_name": "Payroll Results",
+      "period": "202601"
+    },
+    "payroll_combined.xlsx": {
+      "description": "Combined view with both period amounts side by side — 10 employees",
+      "columns": ["Personnel Number", "Employee Name", "Payroll Area", "Cost Center", "Wage Type", "Wage Type Text", "Prior Amount", "Current Amount", "Currency"],
+      "row_count": "~130"
+    },
+    "simulation_results.xlsx": {
+      "description": "Simulation run with 2% basic pay error — 5 employees, 6 wage types",
+      "columns": ["Personnel Number", "Employee Name", "Payroll Area", "Payroll Period", "Cost Center", "Wage Type", "Wage Type Text", "Amount", "Currency"],
+      "row_count": "~30"
+    },
+    "prior_production.xlsx": {
+      "description": "Prior production run for comparison with simulation — 5 employees, 6 wage types",
+      "columns": ["Personnel Number", "Employee Name", "Payroll Area", "Payroll Period", "Cost Center", "Wage Type", "Wage Type Text", "Amount", "Currency"],
+      "row_count": "~30"
+    }
+  },
+  "variance_scenarios": {
+    "new_hires": ["00044701 (Ian Sanchez)", "00044715 (Jasmine Jimenez)"],
+    "terminated": ["00044801 (Keith Bennett)", "00044815 (Lydia Murphy)"],
+    "raises": {
+      "00043156": "Charles Brown — 5% raise (finance promotion)",
+      "00043302": "George Lee — 3% merit raise (operations)"
+    },
+    "medical_plan_changes": {
+      "00043425": "Julia Thomas — upgraded to family plan (higher premium)",
+      "00043704": "Oscar Lewis — downgraded plan (lower premium)"
+    },
+    "overtime": "Current period has 30% higher OT due to project deadline",
+    "simulation_error": "Simulation has systematic 2% error on Basic Pay (wage type 1000)"
+  },
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just exported our January and February payroll results from SAP. Can you compare them and tell me what changed? The files are payroll_current.xlsx and payroll_prior.xlsx",
+      "expected_output": "A variance analysis report showing period-over-period changes by wage type, cost center, and employee, with natural language explanations for significant variances",
+      "files": [
+        "evals/files/payroll_current.xlsx",
+        "evals/files/payroll_prior.xlsx"
+      ],
+      "expectations": [
+        "The output identifies the total payroll amount for both periods",
+        "The output calculates the overall variance (dollar and percentage)",
+        "The output breaks down variances by wage type category (1000=Basic Pay, 1100=OT, 2001=FIT, etc.)",
+        "The output flags variances exceeding the default tolerance threshold (5% AND $500)",
+        "The output detects 2 new hires (00044701, 00044715) appearing only in current period",
+        "The output detects 2 terminated employees (00044801, 00044815) appearing only in prior period",
+        "The output identifies the salary increases for Charles Brown (00043156, 5%) and George Lee (00043302, 3%)",
+        "The output notes the medical plan change for Julia Thomas (00043425)",
+        "The output provides natural language explanations for significant variances",
+        "An XLSX variance report file is generated with multiple sheets"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our CFO is asking why labor costs jumped in cost center 4500 this month. I have the payroll exports - can you dig into what's driving the increase and give me something I can send to her?",
+      "expected_output": "A focused analysis of cost center 4500 variances with an executive-ready summary document",
+      "files": [
+        "evals/files/payroll_current.xlsx",
+        "evals/files/payroll_prior.xlsx"
+      ],
+      "expectations": [
+        "The analysis specifically addresses cost center 4500",
+        "The output identifies overtime as a major driver (higher OT factor in current period)",
+        "The output lists the specific employees in CC 4500 and their individual variances",
+        "An executive-ready summary is produced (either DOCX or well-formatted text)",
+        "The output includes dollar amounts and percentages",
+        "The language is appropriate for CFO-level communication"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "compare these two payroll runs and flag anything over 10% change or more than $1000 difference. i need to review before we release production payroll tomorrow",
+      "expected_output": "A filtered variance analysis using custom thresholds (10% / $1000) with urgency-appropriate formatting",
+      "files": [
+        "evals/files/payroll_current.xlsx",
+        "evals/files/payroll_prior.xlsx"
+      ],
+      "expectations": [
+        "The analysis uses 10% as the percentage threshold",
+        "The analysis uses $1000 as the absolute threshold",
+        "Only variances exceeding BOTH thresholds are flagged (AND logic for pre-production)",
+        "The output is organized for quick pre-production review",
+        "The tone reflects the urgency of a pre-production check",
+        "New hires and terminated employees are flagged as anomalies requiring sign-off"
+      ]
+    }
+  ]
+}
