@@ -57,4 +57,4 @@ Demonstrates pre-retro impact analysis from before/after payroll result exports.
 
 ## Version
 
-2.0.0 — February 2026
+v0.1.0-alpha — February 2026
