@@ -6,12 +6,12 @@ An AI-assisted analysis layer that explores how payroll operations teams using S
 
 **Why this plugin exists:** SAP provides robust payroll calculation, GL posting, and standard reporting. But SAP reports are tabular data — they don't explain *why* something changed or generate stakeholder-ready narratives. This plugin explores how AI analysis applied to standard SAP exports might help bridge that gap.
 
-**What this plugin does NOT replace:** SAP payroll execution (PC00_M10_CALC), GL posting (RPCIPE00), retro processing (PU03/RRDAT), PCC alert management, PCC validation rules, or the judgment of qualified payroll professionals. Those stay where they belong. This plugin is a supplemental analysis aid, not a decision-making tool.
+**What this plugin does NOT replace:** SAP payroll execution, GL posting, retro processing, PCC alert management, PCC validation rules, or the judgment of qualified payroll professionals. Those stay where they belong. This plugin is a supplemental analysis aid, not a decision-making tool.
 
 ## Skills
 
 ### Variance Analyzer
-Explores AI-assisted period-over-period payroll variance analysis with anomaly flagging and natural language commentary. SAP's Wage Type Reporter (PC00_M99_CWTR) can compare periods in tabular format — this skill demonstrates how AI might add root cause hypotheses, statistical outlier flagging, and formatted workbooks to support management review.
+Explores AI-assisted period-over-period payroll variance analysis with anomaly flagging and natural language commentary. SAP's Wage Type Reporter can compare periods in tabular format — this skill demonstrates how AI might add root cause hypotheses, statistical outlier flagging, and formatted workbooks to support management review.
 
 ### Payroll Reporting
 Demonstrates AI-generated stakeholder report drafts from payroll XLSX exports. SAP produces Payroll Journals and Wage Type Reporter output — this skill explores transforming that data into draft Executive Summaries, HR Operations reports, Finance reports, and BPO client deliverables with contextual commentary. All outputs are drafts requiring professional review.
